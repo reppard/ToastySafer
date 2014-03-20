@@ -3,6 +3,8 @@ ToastySafer v0.0.2
 
 Minecraft Server plugin to burn the safers!
 
+Uses [WGRegionEvents](http://dev.bukkit.org/bukkit-plugins/worldguard-region-events/)
+
 Requirements
 ============
 
