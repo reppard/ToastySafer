@@ -38,6 +38,8 @@ public class RegionListener extends WGRegionEventsListener {
 
         if(m.matches()){
             Player player = e.getPlayer();
+            player.sendMessage("IN Match loop");
+
             addToSafers(player.getDisplayName());
             Timer countDown = new Timer(true);
             countDown.schedule(new SaferCheck(this, player), 5000);
@@ -65,12 +67,14 @@ public class RegionListener extends WGRegionEventsListener {
     }
 
     public void addToSafers(String displayName){
-        safers.remove(displayName);
+        safers.add(displayName);
     }
 
     @EventHandler
     public void onRegionLeave(RegionLeaveEvent e){
         Player player = e.getPlayer();
+        player.sendMessage("IN Match loop");
+        player.sendMessage(safers.toString());
         if(getSafers().contains(player.getDisplayName())){
             safers.remove(player.getDisplayName());
         }
