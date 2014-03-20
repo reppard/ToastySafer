@@ -1,5 +1,6 @@
 package com.reppardwalker.toastysafer;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import java.util.TimerTask;
 
@@ -18,14 +19,12 @@ public class SaferCheck extends TimerTask {
     public SaferCheck(RegionListener regionListener, Player player) {
         this.regionLister = regionListener;
         this.player = player;
-        player.sendMessage("IN SafeCheck Int");
     }
 
     public void run(){
-        player.sendMessage("IN SafeCheck run");
-        player.sendMessage(regionLister.getSafers().toString());
         if(regionLister.getSafers().contains(player.getDisplayName())){
             player.setFireTicks(250);
+            player.sendMessage(ChatColor.DARK_RED + "I tried to warn you.");
         }
     }
 }

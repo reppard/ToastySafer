@@ -4,6 +4,7 @@ import com.mewin.WGRegionEvents.WGRegionEventsListener;
 import com.mewin.WGRegionEvents.events.RegionEnterEvent;
 import com.mewin.WGRegionEvents.events.RegionLeaveEvent;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 
@@ -38,27 +39,11 @@ public class RegionListener extends WGRegionEventsListener {
 
         if(m.matches()){
             Player player = e.getPlayer();
-            player.sendMessage("IN Match loop");
+            player.sendMessage(ChatColor.DARK_RED + "Wouldn't stand there if I was you...");
 
             addToSafers(player.getDisplayName());
             Timer countDown = new Timer(true);
             countDown.schedule(new SaferCheck(this, player), 5000);
-            //int igniteTime = 2147483647;
-
-            //for(int count = 0; count < igniteTime; count++){
-            //    if(count == (igniteTime / 2)){
-            //        player.sendMessage(ChatColor.DARK_RED + "Move or burn...");
-            //   }
-
-            //    if(count == igniteTime - 1){
-            //        player.sendMessage(ChatColor.DARK_RED + "Told you so.");
-            //       player.setFireTicks(250);
-            //    }
-
-            //    for(int countB = 0; countB < 2147483647; countB++){
-
-            //    }
-            //}
         }
     }
 
@@ -73,8 +58,6 @@ public class RegionListener extends WGRegionEventsListener {
     @EventHandler
     public void onRegionLeave(RegionLeaveEvent e){
         Player player = e.getPlayer();
-        player.sendMessage("IN Match loop");
-        player.sendMessage(safers.toString());
         if(getSafers().contains(player.getDisplayName())){
             safers.remove(player.getDisplayName());
         }
